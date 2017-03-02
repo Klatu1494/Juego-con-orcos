@@ -4,7 +4,7 @@ class DibujanteDeMapas {
 		if (isFinite(ladoInicial)) {
 			this._lado = ladoInicial;
 			this.ancho = 2 * ladoInicial;
-			this.alto = Math.sqrt(3) * ladoInicial;
+			this.altura = Math.sqrt(3) * ladoInicial;
 			let canvasFondo = document.createElement('canvas');
 			canvasFondo.width = WIDTH;
 			canvasFondo.height = HEIGHT;
@@ -25,7 +25,7 @@ class DibujanteDeMapas {
 	set lado(numero) {
 		this._lado = numero;
 		this.ancho = 2 * numero;
-		this.alto = Math.sqrt(3) * numero;
+		this.altura = Math.sqrt(3) * numero;
 	}
 
 	dibujar(mapa) {
@@ -34,15 +34,17 @@ class DibujanteDeMapas {
 			for (let arrayDeHexagonos of mapa.hexagonos)
 				for (let hexagono of arrayDeHexagonos) {
 					if (hexagono.tipo) {
-						//coloreo los hexagonos
+						let centroX = hexagono.coordenadas.x * this.ancho * 0.75 - mapa.camara.x;
+						let centroY = hexagono.coordenadas.y * this.altura / 2 - mapa.camara.y
+							//coloreo los hexagonos
 						this.ctxFondo.fillStyle = hexagono.tipo.color;
 						this.ctxFondo.beginPath();
-						this.ctxFondo.moveTo(mapa.camara.x + hexagono.coordenadas.x * this.ancho + this.ancho / 2, mapa.camara.y + hexagono.coordenadas.y * this.alto);
-						this.ctxFondo.lineTo(mapa.camara.x + hexagono.coordenadas.x * this.ancho + this.lado / 2, mapa.camara.y + hexagono.coordenadas.y * this.alto + this.altura / 2);
-						this.ctxFondo.lineTo(mapa.camara.x + hexagono.coordenadas.x * this.ancho - this.lado / 2, mapa.camara.y + hexagono.coordenadas.y * this.alto + this.altura / 2);
-						this.ctxFondo.lineTo(mapa.camara.x + hexagono.coordenadas.x * this.ancho - this.ancho / 2, mapa.camara.y + hexagono.coordenadas.y * this.alto);
-						this.ctxFondo.lineTo(mapa.camara.x + hexagono.coordenadas.x * this.ancho - this.lado / 2, mapa.camara.y + hexagono.coordenadas.y * this.alto - this.altura / 2);
-						this.ctxFondo.lineTo(mapa.camara.x + hexagono.coordenadas.x * this.ancho + this.lado / 2, mapa.camara.y + hexagono.coordenadas.y * this.alto - this.altura / 2);
+						this.ctxFondo.moveTo(centroX + this.ancho / 2, centroY);
+						this.ctxFondo.lineTo(centroX + this.lado / 2, centroY + this.altura / 2);
+						this.ctxFondo.lineTo(centroX - this.lado / 2, centroY + this.altura / 2);
+						this.ctxFondo.lineTo(centroX - this.ancho / 2, centroY);
+						this.ctxFondo.lineTo(centroX - this.lado / 2, centroY - this.altura / 2);
+						this.ctxFondo.lineTo(centroX + this.lado / 2, centroY - this.altura / 2);
 						this.ctxFondo.fill();
 					}
 				}

@@ -1,9 +1,15 @@
 window.addEventListener('load', () => {
 	new Raza(
 		'Orco', '', [
-			new Clase('Trabajador', 240, 0, 75, 0, 1),
-			new Clase('Mago', 335, 0, 130, 20, 2),
-			new Clase('Guerrero', 700, 0, 165, 0, 3)
+			new Clase('Trabajador', 240, 0, new Costo({
+				[RECURSOS.comidaPorDia]: 1
+			})),
+			new Clase('Mago', 335, 200, new Costo({
+				[RECURSOS.comidaPorDia]: 2
+			})),
+			new Clase('Guerrero', 700, 0, new Costo({
+				[RECURSOS.comidaPorDia]: 3
+			}))
 		]
 	);
 	new Arma(
@@ -41,7 +47,7 @@ window.addEventListener('load', () => {
 		' p p p p p o m m m m m m m m m m m m m ',
 		'p p p p m m m m m m m m m m m m m m m m',
 		' p p m m m m m m m m m m m m m m m m m ',
-	], new Coordenadas2D(0, 0)).dibujar();
+	], new Coordenadas2D(-LADO_INICIAL_HEXAGONO, -LADO_INICIAL_HEXAGONO));
 
 	document.getElementById('container').style.display = 'block';
 });

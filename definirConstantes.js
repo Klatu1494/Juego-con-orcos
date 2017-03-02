@@ -3,9 +3,11 @@ const HEIGHT = 600;
 const TIPOS_DE_DAÑO = {
 	slashing: 'Slashing'
 }
-const LADO_INICIAL_HEXAGONO = 24;
+const LADO_INICIAL_HEXAGONO = 12;
 const RECURSOS = {
-	oro: 'Oro'
+	oroPorDia: 'oroPorDia',
+	madera: 'madera',
+	comidaPorDia: 'comidaPorDia',
 }
 const TIPOS_DE_HEXAGONO = {
 	agua: new TipoDeHexagono('a', 0.25, '7F9ADF'),

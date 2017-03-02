@@ -24,7 +24,7 @@ class Mapa {
 			}
 			this.camara = camaraInicial;
 			Mapa.mapas.push(this);
-		}
+		} else throw new Error();
 	}
 
 	dibujar() {
