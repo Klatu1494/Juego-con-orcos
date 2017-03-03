@@ -1,13 +1,10 @@
 class Stats {
-	constructor(clase, arma, armadura, escudo) {
-		if (clase instanceof Clase && arma instanceof Arma && escudo instanceof Escudo && armadura instanceof Armadura) {
-			this.vidaMaxima = clase.vida;
-			this.vidaRestante = clase.vida;
-			this.manaMaximo = clase.mana;
-			this.manaRestante = clase.mana;
-			this.arma = arma;
-			this.armadura = armadura;
-			this.escudo = escudo;
+	constructor(tipoDeUnidad) {
+		if (tipoDeUnidad instanceof TipoDeUnidad) {
+			this.vidaMaxima = tipoDeUnidad.vida;
+			this.vidaRestante = tipoDeUnidad.vida;
+			this.ataque = tipoDeUnidad.ataque;
+			this.ataqueDeRango = tipoDeUnidad.ataqueDeRango;
 		} else throw new Error();
 	}
 }

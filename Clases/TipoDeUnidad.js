@@ -1,10 +1,17 @@
 class TipoDeUnidad {
-	constructor(nombre, clase, arma, armadura, escudo) {
-		if (typeof nombre === 'string' && clase instanceof Clase && arma instanceof Arma && escudo instanceof Escudo && armadura instanceof Armadura) {
+	constructor(nombre, vida, ataque, ataqueDeLejos, costo) {
+		vida = parseInt(vida);
+		ataque = parseInt(ataque);
+		ataqueDeLejos = parseInt(ataqueDeLejos);
+		if (typeof nombre === 'string' && isFinite(vida) && isFinite(ataque) && isFinite(ataqueDeLejos) && costo instanceof Costo) {
 			this.nombre = nombre;
-			this.stats = new Stats(clase, arma, armadura, escudo);
-			this.zurdo = Math.random() < 0.13;
-			this.costo = clase.costo.sumarCosto(arma.costo).sumarCosto(armadura.costo).sumarCosto(escudo.costo);
-		}
+			this.vida = vida * 7;
+			this.ataque = ataque;
+			this.ataqueDeLejos = ataqueDeLejos;
+			this.costo = costo;
+			TipoDeUnidad.tipos.push(this);
+		} else throw new Error();
 	}
 }
+
+TipoDeUnidad.tipos = [null]

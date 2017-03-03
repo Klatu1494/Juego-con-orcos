@@ -1,53 +1,33 @@
 window.addEventListener('load', () => {
+	Mapa.prototype.dibujante = new DibujanteDeMapas(LADO_INICIAL_HEXAGONO);
+	new TipoDeHexagono('a', 0.25, '7F9ADF'); //agua
+	new TipoDeHexagono('p', 1, '9FAC1A'); //pasto
+	new TipoDeHexagono('m', 2, '8E97B6'); //montaña
 	new Raza(
-		'Orco', '', [
-			new Clase('Trabajador', 240, 0, new Costo({
-				[RECURSOS.comidaPorDia]: 1
+		'Humano', 'A balanced race.', [
+			new TipoDeUnidad('Brave', 6, 3, 0, new Costo({
+				[RECURSOS.poblacion]: 1
 			})),
-			new Clase('Mago', 335, 200, new Costo({
-				[RECURSOS.comidaPorDia]: 2
+			new TipoDeUnidad('Warrior', 12, 14, 0, new Costo({
+				[RECURSOS.poblacion]: 1
 			})),
-			new Clase('Guerrero', 700, 0, new Costo({
-				[RECURSOS.comidaPorDia]: 3
+			new TipoDeUnidad('Firewarrior', 4, 3, 14, new Costo({
+				[RECURSOS.poblacion]: 1
 			}))
 		]
 	);
-	new Arma(
-		'None', {
-			dañoMin: 0,
-			dañoMax: 0,
-			tipoDeDaño: TIPOS_DE_DAÑO.slashing, //no da hacer un tipo de daño específicamente para un arma que nunca voy a usar
-			costo: new Costo(0, 0, 0)
-		}, false
-	);
-	new Arma(
-		'Pickaxe', {
-			dañoMin: 7,
-			dañoMax: 8,
-			tipoDeDaño: TIPOS_DE_DAÑO.slashing,
-			costo: new Costo(5, 0, 0)
-		}, true
-	);
-	new Arma(
-		'Battle axe', {
-			dañoMin: 18,
-			dañoMax: 21,
-			tipoDeDaño: TIPOS_DE_DAÑO.slashing,
-			costo: new Costo(35, 0, 0)
-		}, true
-	);
 	new Mapa([
-		'm m m m m m m m m m m m m m m m m m m m',
-		' m m m m m m m m m m m m m m m m p p m ',
-		'm m m m m m m m m m m m m m m o p p p m',
-		' a a a a a a a a p p p p p p p p p p m ',
-		'a a a a a a a p p p O p p p p p p p m m',
-		' p a a a a p p p p p p p m m m m m m m ',
-		'p p o p p p p p m m m m m m m m m m m m',
-		' p p p p p o m m m m m m m m m m m m m ',
-		'p p p p m m m m m m m m m m m m m m m m',
-		' p p m m m m m m m m m m m m m m m m m ',
-	], new Coordenadas2D(-LADO_INICIAL_HEXAGONO, -LADO_INICIAL_HEXAGONO));
+		'老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老',
+		' 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 耀 耀 老 ',
+		'老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 耀 耀 耀 耀 老',
+		' 翿 翿 翿 翿 翿 翿 翿 翿 耀 耀 耀 耀 耀 耀 耀 耀 耀 耀 老 ',
+		'翿 翿 翿 翿 翿 翿 翿 耀 耀 耀 耀 耀 耀 耀 耀 耀 耀 耀 老 老',
+		' 耀 翿 翿 翿 翿 耀 耀 耀 耀 耀 耀 耀 老 老 老 老 老 老 老 ',
+		'耀 耀 耀 耀 耀 耀 耀 耀 老 老 老 老 老 老 老 老 老 老 老 老',
+		' 耀 耀 耀 耀 耀 耀 老 老 老 老 老 老 老 老 老 老 老 老 老 ',
+		'耀 耀 耀 耀 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老',
+		' 耀 耀 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 老 ',
+	], new Coordenadas2D(-LADO_INICIAL_HEXAGONO, -LADO_INICIAL_HEXAGONO * Math.sqrt(3) / 2));
 
 	document.getElementById('container').style.display = 'block';
 });

@@ -11,6 +11,9 @@ class TipoDeHexagono {
 			this.color = '#' + color;
 			this.recurso = recurso;
 			this.maxTrabajadores = maxTrabajadores;
+			TipoDeHexagono.tipos.push(this);
 		} else throw new Error();
 	}
 }
+
+TipoDeHexagono.tipos = []

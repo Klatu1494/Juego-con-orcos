@@ -1,9 +1,9 @@
 class Raza {
-	constructor(nombre, descripcion, arrayDeClases) {
+	constructor(nombre, descripcion, arrayDeTipos) {
 		if (typeof nombre === 'string' && typeof descripcion === 'string') {
-			this.clases = [];
-			for (let clase of arrayDeClases) {
-				if (clase instanceof Clase) this.clases.push(clase);
+			this.tipos = [];
+			for (let tipo of arrayDeTipos) {
+				if (tipo instanceof TipoDeUnidad) this.tipos.push(tipo);
 				else throw new Error();
 			}
 			this.nombre = nombre;
