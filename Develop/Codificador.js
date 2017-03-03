@@ -1,5 +1,5 @@
 const BITS_TERRENO = 4;
-const MIN_CODIF = 33;
+const MIN_CODIF = 0xFF;
 
 class Codificador{
 	static bitsAInt (menor, mayor) {
