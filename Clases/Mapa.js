@@ -10,18 +10,20 @@ class Mapa {
 						let char = string[x];
 						let tipo;
 						let contenido;
-						let jugador;
+						let posicion = new Coordenadas2D(x, y);
 						if (char === ' ') {
 							tipo = null;
 							contenido = null;
-							jugador = null;
 						} else {
 							let resultado = Mapa.decodificarChar(char);
 							tipo = resultado.tipoDeHexagono;
-							contenido = resultado.tipoDeUnidad;
-							jugador = resultado.jugador;
+							contenido = resultado.ejercitoOTipoDeUnidad;
+							if (contenido) {
+								if (contenido instanceof Ejercito) contenido.posicion = posicion;
+								else contenido = new Unidad(posicion, contenido);
+							}
 						}
-						this.hexagonos[y].push(new Hexagono(new Coordenadas2D(x, y), tipo, contenido, jugador, this));
+						this.hexagonos[y].push(new Hexagono(new Coordenadas2D(x, y), tipo, contenido, this));
 					}
 				else throw new Error();
 			}
@@ -39,12 +41,11 @@ class Mapa {
 			let charCode = char.charCodeAt(0) - Math.pow(2, 15) + 1;
 			let maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
 			let maskEjercitoOTipoDeUnidad = (Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD) - 1) << BITS_TERRENO;
-			let tipoDeHexagono = charCode & maskTerreno;
-			let ejercitoOTipoDeUnidad = charCode & maskEjercitoOTipoDeUnidad;
+			let tipoDeHexagono = TipoDeHexagono.tipos[charCode & maskTerreno];
+			let ejercitoOTipoDeUnidad = juego.modo === 'mapa' ? Ejercito.ejercitos[charCode & maskEjercitoOTipoDeUnidad] : TipoDeUnidad.tipos[charCode & maskEjercitoOTipoDeUnidad];
 			return {
-				tipoDeHexagono: TipoDeHexagono.tipos[tipoDeHexagono],
-				tipoDeUnidad: modo === 'mapa' ? Ejercito.ejercitos[ejercitoOTipoDeUnidad] : Unidad.unidades[ejercitoOTipoDeUnidad],
-				jugador:
+				tipoDeHexagono: tipoDeHexagono,
+				ejercitoOTipoDeUnidad: ejercitoOTipoDeUnidad
 			};
 		}
 		throw new Error();

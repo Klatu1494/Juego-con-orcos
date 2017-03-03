@@ -1,3 +1,5 @@
+juego = new Juego();
+
 window.addEventListener('load', () => {
 	Mapa.prototype.dibujante = new DibujanteDeMapas(LADO_INICIAL_HEXAGONO);
 	new TipoDeHexagono('a', 0.25, '7F9ADF'); //agua
