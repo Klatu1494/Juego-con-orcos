@@ -8,3 +8,5 @@ const RECURSOS = {
 	poblacion: 'poblacion',
 	madera: 'madera'
 }
+const BITS_TERRENO = 4;
+const BITS_EJERCITO_O_TIPO_DE_UNIDAD = 11;
