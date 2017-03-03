@@ -39,10 +39,8 @@ class Mapa {
 	static decodificarChar(char) {
 		if (typeof char === 'string') {
 			let charCode = char.charCodeAt(0) - 0xFF;
-			let maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
-			let maskEjercitoOTipoDeUnidad = (Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD) - 1) << BITS_TERRENO;
-			let tipoDeHexagono = TipoDeHexagono.tipos[charCode & maskTerreno];
-			let ejercitoOTipoDeUnidad = juego.modo === 'mapa' ? Ejercito.ejercitos[charCode & maskEjercitoOTipoDeUnidad] : TipoDeUnidad.tipos[charCode & maskEjercitoOTipoDeUnidad];
+			let tipoDeHexagono = TipoDeHexagono.tipos[charCode & this.maskTerreno];
+			let ejercitoOTipoDeUnidad = juego.modo === 'mapa' ? Ejercito.ejercitos[(charCode & this.maskEjercitoOTipoDeUnidad) >> BITS_TERRENO] : TipoDeUnidad.tipos[(charCode & this.maskEjercitoOTipoDeUnidad) >> BITS_TERRENO];
 			return {
 				tipoDeHexagono: tipoDeHexagono,
 				ejercitoOTipoDeUnidad: ejercitoOTipoDeUnidad
@@ -53,3 +51,5 @@ class Mapa {
 }
 
 Mapa.mapas = [];
+Mapa.maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
+Mapa.maskEjercitoOTipoDeUnidad = (Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD) - 1) << BITS_TERRENO;

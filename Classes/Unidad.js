@@ -1,9 +1,10 @@
 class Unidad {
 	constructor(posicion, tipo) {
 		if (posicion instanceof Coordenadas2D && tipo instanceof TipoDeUnidad) {
-			unidad.stats = new Stats(TipoDeUnidad);
-			unidad.tipo = tipo;
-			unidad.posicion = posicion;
+			this.stats = new Stats(TipoDeUnidad);
+			this.tipo = tipo;
+			this.posicion = posicion;
+			this.img = tipo.img;
 		} else throw new Error();
 	}
 
