@@ -38,7 +38,7 @@ class Mapa {
 
 	static decodificarChar(char) {
 		if (typeof char === 'string') {
-			let charCode = char.charCodeAt(0) - Math.pow(2, 15) + 1;
+			let charCode = char.charCodeAt(0) - 0xFF;
 			let maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
 			let maskEjercitoOTipoDeUnidad = (Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD) - 1) << BITS_TERRENO;
 			let tipoDeHexagono = TipoDeHexagono.tipos[charCode & maskTerreno];
