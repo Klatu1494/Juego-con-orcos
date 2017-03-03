@@ -26,14 +26,12 @@ window.addEventListener('load', () => {
 	document.body.appendChild(TERRENO);
 	document.body.appendChild(document.createElement('br'));
 	document.body.appendChild(document.createTextNode('Ejército: '));
-	let EJERCITO_O_TIPO_DE_UNIDAD = document.createElement('select');
 	for (let i = 0; i < Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD); i++) {
 		let option = document.createElement('option');
 		option.innerText = 'Ejército ' + (i + 1);
 		EJERCITO_O_TIPO_DE_UNIDAD.appendChild(option);
 	}
 	document.body.appendChild(EJERCITO_O_TIPO_DE_UNIDAD);
-
 	//y les agrego event listeners
 	TERRENO.addEventListener('change', Codificador.codificar);
 	EJERCITO_O_TIPO_DE_UNIDAD.addEventListener('change', Codificador.codificar);
