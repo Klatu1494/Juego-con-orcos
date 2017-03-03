@@ -38,15 +38,13 @@ class Mapa {
 		if (typeof char === 'string') {
 			let charCode = char.charCodeAt(0) - Math.pow(2, 15) + 1;
 			let maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
-			let maskUnidadOEjercito = (Math.pow(2, BITS_UNIDAD_O_EJERCITO) - 1) << BITS_TERRENO;
-			let maskJugador = (Math.pow(2, BITS_JUGADOR) - 1) << (BITS_UNIDAD_O_EJERCITO + BITS_TERRENO);
+			let maskEjercitoOTipoDeUnidad = (Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD) - 1) << BITS_TERRENO;
 			let tipoDeHexagono = charCode & maskTerreno;
-			let tipoDeUnidadO = charCode & maskTerreno;
-			let tipoDeHexagono = charCode & maskTerreno;
+			let ejercitoOTipoDeUnidad = charCode & maskEjercitoOTipoDeUnidad;
 			return {
 				tipoDeHexagono: TipoDeHexagono.tipos[tipoDeHexagono],
-				tipoDeUnidad: TipoDeUnidad.tipos[tipoDeUnidad],
-				jugador: null
+				tipoDeUnidad: modo === 'mapa' ? Ejercito.ejercitos[ejercitoOTipoDeUnidad] : Unidad.unidades[ejercitoOTipoDeUnidad],
+				jugador:
 			};
 		}
 		throw new Error();
