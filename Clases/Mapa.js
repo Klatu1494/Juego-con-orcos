@@ -37,12 +37,12 @@ class Mapa {
 	static decodificarChar(char) {
 		if (typeof char === 'string') {
 			let charCode = char.charCodeAt(0) - Math.pow(2, 15) + 1;
-			//recordar que 32===Math.pow(2, 5)
-			let tipoDeHexagono = charCode % 32;
-			charCode = (charCode - tipoDeHexagono) / 32;
-			let tipoDeUnidad = charCode % 32;
-			charCode = (charCode - tipoDeUnidad) / 32;
-			let jugador = charCode % 32;
+			let maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
+			let maskUnidadOEjercito = (Math.pow(2, BITS_UNIDAD_O_EJERCITO) - 1) << BITS_TERRENO;
+			let maskJugador = (Math.pow(2, BITS_JUGADOR) - 1) << (BITS_UNIDAD_O_EJERCITO + BITS_TERRENO);
+			let tipoDeHexagono = charCode & maskTerreno;
+			let tipoDeUnidadO = charCode & maskTerreno;
+			let tipoDeHexagono = charCode & maskTerreno;
 			return {
 				tipoDeHexagono: TipoDeHexagono.tipos[tipoDeHexagono],
 				tipoDeUnidad: TipoDeUnidad.tipos[tipoDeUnidad],
