@@ -24,10 +24,16 @@ class Ejercito {
 	moverA(coordenadas) {
 		if (coordenadas instanceof Coordenadas) {
 			juego.pathfinder.encontrarCaminoA(this, coordenadas);
-			juego.mapaActual.hexagonos[this.posicion.y][this.posicion.x].contenido = null;
-			this.posicion = juego.pathfinder.caminoMasCortoEncontrado[0].coordenadas;
-			juego.mapaActual.hexagonos[this.posicion.y][this.posicion.x].contenido = this;
-			juego.dibujante.actualizar();
+			let hexagonoObjetivo = juego.pathfinder.caminoMasCortoEncontrado[0];
+			if (hexagonoObjetivo.contenido) {
+				juego.modo = 'batalla';
+				juego.entrarAMapa(mapaDePrueba.vaciar().agregarEjercitos([this, hexagonoObjetivo.contenido]));
+			} else {
+				juego.mapaActual.hexagonos[this.posicion.y][this.posicion.x].contenido = null;
+				this.posicion = juego.pathfinder.caminoMasCortoEncontrado[0].coordenadas;
+				juego.mapaActual.hexagonos[this.posicion.y][this.posicion.x].contenido = this;
+				juego.dibujante.actualizar();
+			}
 		} else throw new Error();
 	}
 }

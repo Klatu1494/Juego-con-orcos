@@ -1,4 +1,5 @@
 let juego;
+let mapaDePrueba;
 
 window.addEventListener('load', () => {
 	new TipoDeHexagono(0.25, false, '7F9ADF'); //agua
@@ -18,33 +19,34 @@ window.addEventListener('load', () => {
 			}), document.getElementById('test-army'))
 		]
 	);
-	new Ejercito([], document.getElementById('test-army')).agregarUnidades(Raza.razas.get('Humanos').tipos[0], 69);
+	new Ejercito([], document.getElementById('test-army')).agregarUnidades(Raza.razas.get('Humanos').tipos[0], 10);
+	new Ejercito([], document.getElementById('test-army')).agregarUnidades(Raza.razas.get('Humanos').tipos[0], 5);
 	juego = new Juego();
-	new Mapa([
-			'đ ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā',
-			' ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā Ā Ā ā ',
-			'ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā Ā Ā Ā Ā ā',
-			' ÿ ÿ ÿ ÿ ÿ ÿ ÿ ÿ Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā ā ',
-			'ÿ ÿ ÿ ÿ ÿ ÿ ÿ Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā ā ā',
-			' Ā ÿ ÿ ÿ ÿ Ā Ā Ā Ā Ā Ā Ā ā ā ā ā ā ā ā ',
-			'Ā Ā Ā Ā Ā Ā Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā',
-			' Ā Ā Ā Ā Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā ā ',
-			'Ā Ā Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā',
-			' Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ',
-		], new Coordenadas2D(0, 0)),
-		new Mapa([
-			'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā',
-			' Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā ',
-			'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ā Ā Ā Ā Ā Ā Ā Ā Ā',
-			' Ā Ā Ā Ā Ā ā ā ā Ā Ă Ă Ā Ā Ā Ā Ā Ā Ā Ā ',
-			'Ā Ā Ā Ā Ā ā ā Ā Ā Ā Ă Ā Ā Ā Ā Ā Ā Ā Ā Ā',
-			' Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ă Ă Ă Ă Ă Ā Ā ',
-			'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ă Ă Ā Ā Ā Ā Ā',
-			' Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ă Ă Ă Ă Ă Ā Ā Ā ',
-			'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ā Ă Ă Ă Ă Ā Ā Ā Ā Ā',
-			' Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ā Ā Ā Ā Ā ',
-		], new Coordenadas2D(0, 0));
-	juego.entrarAMapa(Mapa.mapas[1]);
+	mapaDePrueba = new Mapa([
+		'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā',
+		' Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā ',
+		'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ā Ā Ā Ā Ā Ā Ā Ā Ā',
+		' Ā Ā Ā Ā Ā ā ā ā Ā Ă Ă Ā Ā Ā Ā Ā Ā Ā Ā ',
+		'Ā Ā Ā Ā Ā ā ā Ā Ā Ā Ă Ā Ā Ā Ā Ā Ā Ā Ā Ā',
+		' Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ă Ă Ă Ă Ă Ā Ā ',
+		'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ă Ă Ā Ā Ā Ā Ā',
+		' Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ă Ă Ă Ă Ă Ā Ā Ā ',
+		'Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ā Ă Ă Ă Ă Ā Ā Ā Ā Ā',
+		' Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ă Ă Ă Ā Ā Ā Ā Ā ',
+	], new Coordenadas2D(0, 0));
+	Mapa.niveles.push(new Mapa([
+		'đ ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā',
+		' ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā Ā Ā ā ',
+		'ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā Ā Ā Ā Ā ā',
+		' ÿ ÿ ÿ ÿ ÿ ÿ ÿ ÿ Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā ā ',
+		'ÿ ÿ ÿ ÿ ÿ ÿ ÿ Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā Ā ā ā',
+		' Ā ÿ ÿ ÿ ÿ Ā Ā Ā Ā Ā Ā Ā ā ā ā ā ā ā ā ',
+		'Ā Ā Ā Ā Ā Ā Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā',
+		' Ā Ā Ā Ā Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā ā ',
+		'Ā Ā Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā',
+		' Ā Ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ā ġ ',
+	], new Coordenadas2D(0, 0)));
+	juego.entrarANivel(0);
 
 	document.getElementById('container').style.display = 'block';
 });

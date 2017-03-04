@@ -28,7 +28,25 @@ class Mapa {
 				else throw new Error();
 			}
 			this.camara = camaraInicial;
-			Mapa.mapas.push(this);
+			this.mapas = [];
+			for (let i = 0; i < this.hexagonos.length; i++) {
+				this.mapas.push([]);
+				for (let j = 0; j < this.hexagonos[i].length; j++) this.mapas[i].push(mapaDePrueba);
+			}
+		} else throw new Error();
+	}
+
+	vaciar() {
+		for (let arrayDeHexagonos of this.hexagonos)
+			for (let hexagono of arrayDeHexagonos) hexagono.contenido = null;
+		return this;
+	}
+
+	agregarEjercitos(ejercitos) {
+		if (ejercitos instanceof Array && ejercitos.length === 2) {
+			if (ejercitos[0] instanceof Ejercito) {
+
+			} else throw new Error();
 		} else throw new Error();
 	}
 
@@ -46,6 +64,6 @@ class Mapa {
 	}
 }
 
-Mapa.mapas = [];
+Mapa.niveles = [];
 Mapa.maskTerreno = Math.pow(2, BITS_TERRENO) - 1;
 Mapa.maskEjercitoOTipoDeUnidad = (Math.pow(2, BITS_EJERCITO_O_TIPO_DE_UNIDAD) - 1) << BITS_TERRENO;
