@@ -30,35 +30,30 @@ class DibujanteDeMapas {
 		this.altura = Math.sqrt(3) * numero;
 	}
 
-	dibujar(mapa) {
-		this.mapaActual = mapa;
+	dibujar() {
 		this.ctxFondo.clearRect(0, 0, WIDTH, HEIGHT);
-		if (mapa instanceof Mapa) {
-			for (let arrayDeHexagonos of mapa.hexagonos)
-				for (let hexagono of arrayDeHexagonos) {
-					if (hexagono.tipo) {
-						let centro = this.calcularCentroDeHexagono(hexagono);
-						//coloreo los hexagonos
-						this.ctxFondo.fillStyle = hexagono.tipo.color;
-						this.ctxFondo.beginPath();
-						this.ctxFondo.moveTo(centro.x + this.ancho / 2, centro.y);
-						this.ctxFondo.lineTo(centro.x + this.lado / 2, centro.y + this.altura / 2);
-						this.ctxFondo.lineTo(centro.x - this.lado / 2, centro.y + this.altura / 2);
-						this.ctxFondo.lineTo(centro.x - this.ancho / 2, centro.y);
-						this.ctxFondo.lineTo(centro.x - this.lado / 2, centro.y - this.altura / 2);
-						this.ctxFondo.lineTo(centro.x + this.lado / 2, centro.y - this.altura / 2);
-						this.ctxFondo.fill();
-					}
+		for (let arrayDeHexagonos of juego.mapaActual.hexagonos)
+			for (let hexagono of arrayDeHexagonos) {
+				if (hexagono.tipo) {
+					let centro = this.calcularCentroDeHexagono(hexagono);
+					//coloreo los hexagonos
+					this.ctxFondo.fillStyle = hexagono.tipo.color;
+					this.ctxFondo.beginPath();
+					this.ctxFondo.moveTo(centro.x + this.ancho / 2, centro.y);
+					this.ctxFondo.lineTo(centro.x + this.lado / 2, centro.y + this.altura / 2);
+					this.ctxFondo.lineTo(centro.x - this.lado / 2, centro.y + this.altura / 2);
+					this.ctxFondo.lineTo(centro.x - this.ancho / 2, centro.y);
+					this.ctxFondo.lineTo(centro.x - this.lado / 2, centro.y - this.altura / 2);
+					this.ctxFondo.lineTo(centro.x + this.lado / 2, centro.y - this.altura / 2);
+					this.ctxFondo.fill();
 				}
-			this.actualizarMapa(mapa);
-		} else throw new Error();
+			}
+		this.actualizar();
 	}
 
-	actualizarMapa(mapa) {
-		if (mapa instanceof Mapa) {
-			for (let arrayDeHexagonos of mapa.hexagonos)
-				for (let hexagono of arrayDeHexagonos) this.actualizarHex(hexagono);
-		} else throw new Error();
+	actualizar() {
+		for (let arrayDeHexagonos of juego.mapaActual.hexagonos)
+			for (let hexagono of arrayDeHexagonos) this.actualizarHex(hexagono);
 	}
 
 	actualizarHex(hexagono) {
@@ -71,7 +66,7 @@ class DibujanteDeMapas {
 
 	calcularCentroDeHexagono(hexagono) {
 		if (hexagono instanceof Hexagono) {
-			return new Coordenadas2D(hexagono.coordenadas.x * (this.ancho / 2 + this.lado / 2) - this.mapaActual.camara.x + this.ancho / 2, hexagono.coordenadas.y * this.altura / 2 - this.mapaActual.camara.y + this.altura / 2);
+			return new Coordenadas2D(hexagono.coordenadas.x * (this.ancho / 2 + this.lado / 2) - juego.mapaActual.camara.x + this.ancho / 2, hexagono.coordenadas.y * this.altura / 2 - juego.mapaActual.camara.y + this.altura / 2);
 		} else throw new Error();
 	}
 }

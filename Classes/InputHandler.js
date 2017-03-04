@@ -6,34 +6,41 @@ class InputHandler {
 
 	clickHandler(event) {
 		let puntoClickeado = new Coordenadas2D(event.clientX, event.clientY);
+		let coordenadasExactas = new Coordenadas2D(
+			(puntoClickeado.x + juego.mapaActual.camara.x - this.dibujante.ancho / 2) / (this.dibujante.ancho / 2 + this.dibujante.lado / 2),
+			(puntoClickeado.y + juego.mapaActual.camara.y - this.dibujante.altura / 2) / (this.dibujante.altura / 2)
+		);
 		let coordenadasAproximadas = new Coordenadas2D(
-			Math.round((puntoClickeado.x + this.dibujante.mapaActual.camara.x - this.dibujante.ancho / 2) / (this.dibujante.ancho / 2 + this.dibujante.lado / 2)),
-			Math.round((puntoClickeado.y + this.dibujante.mapaActual.camara.y - this.dibujante.altura / 2) / (this.dibujante.altura / 2))
+			Math.round(coordenadasExactas.x),
+			Math.round(coordenadasExactas.y)
 		);
 		let posiblesHexagonosClickeados = []
 		if (
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x] &&
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x].tipo
-		) posiblesHexagonosClickeados.push(this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x]);
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x] &&
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x].tipo
+		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x]);
 		if (
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x] &&
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x].tipo
-		) posiblesHexagonosClickeados.push(this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x]);
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x] &&
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x].tipo
+		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x]);
 		if (
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x] &&
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x].tipo
-		) posiblesHexagonosClickeados.push(this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x]);
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x] &&
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x].tipo
+		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x]);
 		if (
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1] &&
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1].tipo
-		) posiblesHexagonosClickeados.push(this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1]);
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1] &&
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1].tipo
+		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1]);
 		if (
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1] &&
-			this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1].tipo
-		) posiblesHexagonosClickeados.push(this.dibujante.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1]);
-		for (let hexagono of posiblesHexagonosClickeados)
-			if (hexagono.contiene(puntoClickeado)) {
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1] &&
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1].tipo
+		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1]);
+		for (let hexagono of posiblesHexagonosClickeados) {
+			console.log(juego.mapaActual.hexagonos[2][14]);
+			if (hexagono.contiene(coordenadasExactas, false).info === 'El punto está dentro del polígono.') {
 				Ejercito.ejercitos[1].moverA(hexagono.coordenadas);
+				break;
 			}
+		}
 	}
 }

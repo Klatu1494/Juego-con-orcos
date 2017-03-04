@@ -21,9 +21,13 @@ class Ejercito {
 		return this;
 	}
 
-	moverA(hexagono) {
-		if (hexagono instanceof Hexagono) {
-
+	moverA(coordenadas) {
+		if (coordenadas instanceof Coordenadas) {
+			juego.pathfinder.encontrarCaminoA(this, coordenadas);
+			juego.mapaActual.hexagonos[this.posicion.y][this.posicion.x].contenido = null;
+			this.posicion = juego.pathfinder.caminoMasCortoEncontrado[0].coordenadas;
+			juego.mapaActual.hexagonos[this.posicion.y][this.posicion.x].contenido = this;
+			juego.dibujante.actualizar();
 		} else throw new Error();
 	}
 }

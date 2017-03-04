@@ -32,10 +32,6 @@ class Mapa {
 		} else throw new Error();
 	}
 
-	dibujar() {
-		this.dibujante.dibujar(this);
-	}
-
 	static decodificarChar(char) {
 		if (typeof char === 'string') {
 			let charCode = char.charCodeAt(0) - 0xFF;
