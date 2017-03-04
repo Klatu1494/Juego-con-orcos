@@ -16,22 +16,27 @@ class InputHandler {
 		);
 		let posiblesHexagonosClickeados = []
 		if (
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x].tipo
 		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x]);
 		if (
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x].tipo
 		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y + 1][coordenadasAproximadas.x]);
 		if (
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x].tipo
 		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y - 1][coordenadasAproximadas.x]);
 		if (
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1].tipo
 		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x + 1]);
 		if (
+			juego.mapaActual.hexagonos[coordenadasAproximadas.y] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1] &&
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1].tipo
 		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1]);
