@@ -3,7 +3,7 @@ const HEIGHT = 600;
 const TIPOS_DE_DAÑO = {
 	slashing: 'Slashing'
 }
-const LADO_INICIAL_HEXAGONO = 12;
+const LADO_INICIAL_HEXAGONOS = 24;
 const RECURSOS = {
 	poblacion: 'poblacion',
 	madera: 'madera'

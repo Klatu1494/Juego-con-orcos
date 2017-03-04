@@ -4,6 +4,10 @@
 	left:0;
 }
 
+#images{
+	display:none;
+}
+
 body{
 	margin:0;
 }
