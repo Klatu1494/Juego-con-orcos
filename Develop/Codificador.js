@@ -35,7 +35,6 @@ window.addEventListener('load', () => {
 		EJERCITO_O_TIPO_DE_UNIDAD.appendChild(option);
 	}
 	document.body.appendChild(EJERCITO_O_TIPO_DE_UNIDAD);
-
 	//y les agrego event listeners
 	TERRENO.addEventListener('change', Codificador.codificar);
 	EJERCITO_O_TIPO_DE_UNIDAD.addEventListener('change', Codificador.codificar);
