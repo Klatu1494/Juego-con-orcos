@@ -57,10 +57,12 @@ class DibujanteDeMapas {
 	}
 
 	actualizarHex(hexagono) {
-		if (hexagono instanceof Hexagono || hexagono === null) {
-			let centro = this.calcularCentroDeHexagono(hexagono);
-			this.ctxFrente.clearRect(centro.x - this.lado / 2, centro.y - this.altura / 2, this.lado, this.altura);
-			if (hexagono.contenido) this.ctxFrente.drawImage(hexagono.contenido.img, centro.x - this.lado / 2, centro.y - this.altura / 2, this.lado, this.altura);
+		if (hexagono instanceof Hexagono) {
+			if (hexagono.tipo) {
+				let centro = this.calcularCentroDeHexagono(hexagono);
+				this.ctxFrente.clearRect(centro.x - this.lado / 2, centro.y - this.altura / 2, this.lado, this.altura);
+				if (hexagono.contenido) this.ctxFrente.drawImage(hexagono.contenido.img, centro.x - this.lado / 2, centro.y - this.altura / 2, this.lado, this.altura);
+			}
 		} else throw new Error();
 	}
 
