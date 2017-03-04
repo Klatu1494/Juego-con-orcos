@@ -10,11 +10,13 @@ class Pathfinder {
 		this.caminoMasCortoEncontrado = null;
 		if (coordenadas instanceof Coordenadas2D && (ejercitoOUnidad instanceof Unidad || ejercitoOUnidad instanceof Ejercito) && this.mapaActual) {
 			for (let hexagonos of this.mapaActual.hexagonos) {
-				hexagono.costoMinEncontrado = null;
-				hexagono.costoMinPosible = null;
-				hexagono.noChequear = false;
+				for (let hexagono of hexagonos) {
+					hexagono.costoMinEncontrado = null;
+					hexagono.costoMinPosible = null;
+					hexagono.noChequear = false;
+				}
 			}
-			return this.encontrarCamino(unidad.posicion, coordenadas, 0, [], []);
+			return this.encontrarCamino(ejercitoOUnidad.posicion, coordenadas, 0, [], []);
 		} else throw new Error();
 	}
 
