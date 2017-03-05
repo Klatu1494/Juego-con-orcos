@@ -26,12 +26,12 @@ class Pathfinder {
 		hexagonosAdyacentes = hexagonosAdyacentes.concat(juego.mapaActual.hexagonos[desde.y][desde.x].hexagonosAdyacentes);
 		let hexagonosAdyacentesAOrdenar = [];
 		for (let hexagono of hexagonosAdyacentes) {
-			let minCoordenadaDeLaDistancia = Math.min(Math.abs(hexagono.coordenadas.x - hasta.x), Math.abs(hexagono.coordenadas.y - hasta.y));
-			let maxCoordenadaDeLaDistancia = Math.max(Math.abs(hexagono.coordenadas.x - hasta.x), Math.abs(hexagono.coordenadas.y - hasta.y));
 			if (hexagono.noChequear || !hexagono.tipo.sePuedeEntrar) {
 				hexagono.noChequear = true;
 				continue;
 			}
+			let minCoordenadaDeLaDistancia = Math.min(Math.abs(hexagono.coordenadas.x - hasta.x), Math.abs(hexagono.coordenadas.y - hasta.y));
+			let maxCoordenadaDeLaDistancia = Math.max(Math.abs(hexagono.coordenadas.x - hasta.x), Math.abs(hexagono.coordenadas.y - hasta.y));
 			if (hexagono.costoMinEncontrado && hexagono.costoMinEncontrado < costo + hexagono.tipo.costoDeMovimiento) continue;
 			hexagono.costoMinEncontrado = costo + hexagono.tipo.costoDeMovimiento;
 			if (hexagono.coordenadas.x === hasta.x && hexagono.coordenadas.y === hasta.y && hexagono.costoMinEncontrado < this.costoDelCaminoMasCortoEncontrado) {
@@ -39,7 +39,7 @@ class Pathfinder {
 				this.caminoMasCortoEncontrado = camino.concat([hexagono]);
 				return;
 			}
-			hexagono.costoMinPosible = this.costoMin * (minCoordenadaDeLaDistancia + (maxCoordenadaDeLaDistancia - minCoordenadaDeLaDistancia) * (Math.abs(hexagono.coordenadas.x - hasta.x) < Math.abs(hexagono.coordenadas.y - hasta.y) ? 0.75 : 0.5)) + hexagono.costoMinEncontrado;
+			hexagono.costoMinPosible = this.costoMin * (minCoordenadaDeLaDistancia + (maxCoordenadaDeLaDistancia - minCoordenadaDeLaDistancia) * (Math.abs(hexagono.coordenadas.x - hasta.x) < Math.abs(hexagono.coordenadas.y - hasta.y) ? 0.5 : 1)) + hexagono.costoMinEncontrado;
 			if (this.costoDelCaminoMasCortoEncontrado < hexagono.costoMinPosible) {
 				hexagono.noChequear = true;
 				continue;

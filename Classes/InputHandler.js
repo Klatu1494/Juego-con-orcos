@@ -41,7 +41,6 @@ class InputHandler {
 			juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1].tipo
 		) posiblesHexagonosClickeados.push(juego.mapaActual.hexagonos[coordenadasAproximadas.y][coordenadasAproximadas.x - 1]);
 		for (let hexagono of posiblesHexagonosClickeados) {
-			console.log(juego.mapaActual.hexagonos[2][14]);
 			if (hexagono.contiene(coordenadasExactas, false).info === 'El punto está dentro del polígono.') {
 				Ejercito.ejercitos[1].moverA(hexagono.coordenadas);
 				break;
